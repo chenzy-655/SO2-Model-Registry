@@ -14,7 +14,7 @@ python tools/build_release.py `
   --version 2026.08.1 `
   --sequence 20260801 `
   --repository OWNER/SO2-Model-Registry `
-  --private-key D:\AI_Visual\SO2_Model_Signing\model-signing-private.pem
+  --private-key "$env:USERPROFILE\.so2-model-signing\model-signing-private.pem"
 ```
 
 签名私钥不得上传 GitHub、发送到聊天或复制到手机。APP 只保存公开密钥并在激活前执行 ECDSA、SHA-256、引擎版本及 JSON 结构校验。
