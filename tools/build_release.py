@@ -29,6 +29,7 @@ def main() -> None:
     parser.add_argument("--private-key", required=True, type=Path)
     parser.add_argument("--profiles", default=Path("models/profiles.json"), type=Path)
     parser.add_argument("--output", default=Path("dist"), type=Path)
+    parser.add_argument("--package-base-url", help="Optional static delivery directory URL")
     parser.add_argument("--notes", default="更新场景模型与回归参数")
     args = parser.parse_args()
 
@@ -62,12 +63,15 @@ def main() -> None:
 
     package_bytes = package_path.read_bytes()
     tag = f"models-v{args.version}"
+    package_url = (args.package_base_url.rstrip("/") + "/" + package_name) if args.package_base_url else (
+        f"https://github.com/{args.repository}/releases/download/{tag}/{package_name}"
+    )
     index = {
         "schemaVersion": 1,
         "latestVersion": args.version,
         "sequence": args.sequence,
         "engineMin": 1,
-        "packageUrl": f"https://github.com/{args.repository}/releases/download/{tag}/{package_name}",
+        "packageUrl": package_url,
         "sha256": sha256(package_bytes),
         "size": len(package_bytes),
         "publishedAt": published_at,
