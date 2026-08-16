@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "concentrations": [0.0, 0.125, 0.25, 0.5, 1.0, 2.0, 3.0],
+  "scenes": [
+    {
+      "id": "scene1",
+      "label": "场景1 · 比色管",
+      "container": "TUBE",
+      "whiteBalance": false,
+      "response": [7.75, 9.25, 13.0, 22.5, 37.5, 55.25, 75.75]
+    },
+    {
+      "id": "scene2",
+      "label": "场景2 · 比色管",
+      "container": "TUBE",
+      "whiteBalance": false,
+      "response": [9.5, 10.5, 12.5, 17.0, 41.0, 61.0, 90.0]
+    },
+    {
+      "id": "scene3",
+      "label": "场景3 · 96孔板",
+      "container": "PLATE",
+      "whiteBalance": false,
+      "response": [0.0484, 0.0828, 0.1224, 0.2301, 0.3686, 0.6563, 1.0479]
+    },
+    {
+      "id": "scene4",
+      "label": "场景4 · 比色管 · 白平衡",
+      "container": "TUBE",
+      "whiteBalance": true,
+      "response": [2.5803, 4.6603, 5.2798, 8.1443, 10.4108, 15.1538, 16.4044]
+    },
+    {
+      "id": "scene5",
+      "label": "场景5 · 比色管 · 白平衡",
+      "container": "TUBE",
+      "whiteBalance": true,
+      "response": [4.0643, 2.9042, 2.4246, 5.0545, 6.6687, 11.2386, 18.4654]
+    }
+  ]
+}
