@@ -25,6 +25,8 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Build and sign an SO2 model release package.")
     parser.add_argument("--version", required=True)
     parser.add_argument("--sequence", required=True, type=int)
+    parser.add_argument("--engine-min", required=True, type=int)
+    parser.add_argument("--engine-max", required=True, type=int)
     parser.add_argument("--repository", required=True, help="GitHub owner/repository")
     parser.add_argument("--private-key", required=True, type=Path)
     parser.add_argument("--profiles", default=Path("models/profiles.json"), type=Path)
@@ -35,6 +37,8 @@ def main() -> None:
 
     if not re.fullmatch(r"[0-9]{4}\.[0-9]{2}\.[0-9]+", args.version):
         raise SystemExit("Version must use YYYY.MM.N format")
+    if args.engine_min < 1 or args.engine_max < args.engine_min:
+        raise SystemExit("Engine range is invalid")
     profiles_bytes = compact_json(json.loads(args.profiles.read_text(encoding="utf-8")))
     published_at = datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
     manifest = {
@@ -42,8 +46,8 @@ def main() -> None:
         "packageId": "so2-models",
         "version": args.version,
         "sequence": args.sequence,
-        "engineMin": 1,
-        "engineMax": 1,
+        "engineMin": args.engine_min,
+        "engineMax": args.engine_max,
         "publishedAt": published_at,
         "files": {"profiles.json": sha256(profiles_bytes)},
     }
@@ -70,7 +74,7 @@ def main() -> None:
         "schemaVersion": 1,
         "latestVersion": args.version,
         "sequence": args.sequence,
-        "engineMin": 1,
+        "engineMin": args.engine_min,
         "packageUrl": package_url,
         "sha256": sha256(package_bytes),
         "size": len(package_bytes),
