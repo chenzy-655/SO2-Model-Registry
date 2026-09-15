@@ -12,8 +12,8 @@ SO2 Detection Android 的签名模型仓库。GitHub Releases 中的模型包可
 
 ```powershell
 python tools/build_release.py `
-  --version 2026.08.2 `
-  --sequence 20260802 `
+  --version 2026.09.1 `
+  --sequence 20260901 `
   --engine-min 2 `
   --engine-max 2 `
   --repository OWNER/SO2-Model-Registry `
@@ -22,8 +22,8 @@ python tools/build_release.py `
 
 ```powershell
 python tools/build_release.py `
-  --version 2026.08.2 `
-  --sequence 20260802 `
+  --version 2026.09.1 `
+  --sequence 20260901 `
   --engine-min 2 `
   --engine-max 2 `
   --repository OWNER/SO2-Model-Registry `
